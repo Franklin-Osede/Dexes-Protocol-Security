@@ -48,6 +48,10 @@ contract SphereXEngineMock is ISphereXEngine {
 
     function addAllowedSenderOnChain(address sender) external override {}
 
+    function addAllowedSender(address sender) external {
+        // Implementation not needed for the test, but the function must exist
+    }
+
     function supportsInterface(bytes4) external pure returns (bool) {
         return true;
     }
