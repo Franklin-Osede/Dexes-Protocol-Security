@@ -28,8 +28,6 @@ contract("SphereXEngine Validation Bypass", function (accounts) {
 
     // Configurar contrato de bypass
     bypassContract = await SphereXBypassVulnerability.new(vulnerablePool.address, { from: attacker });
-
-    console.log("Real user1 address:", user1);
   });
 
   it("should protect direct access to sensitive functions", async function () {
