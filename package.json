@@ -48,6 +48,7 @@
     "publish-to-npm": "npm run lint-fix && bash ./scripts/publish.sh --public"
   },
   "dependencies": {
+    "@aave/protocol-v2": "^1.0.1",
     "@openzeppelin/contracts": "4.9.2",
     "@openzeppelin/contracts-upgradeable": "4.9.2",
     "@solarity/solidity-lib": "2.6.9",
