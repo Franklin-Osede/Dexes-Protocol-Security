@@ -7,6 +7,7 @@ require("@solarity/hardhat-gobind");
 require("hardhat-contract-sizer");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
+require("@nomicfoundation/hardhat-ethers");
 
 const dotenv = require("dotenv");
 dotenv.config();
