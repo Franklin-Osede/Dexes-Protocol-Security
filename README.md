@@ -1,61 +1,104 @@
-[![npm](https://img.shields.io/npm/v/@dexe-network/dexe-protocol.svg)](https://www.npmjs.com/package/@dexe-network/dexe-protocol)
+### About DeXe Protocol
 
-<div align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="/.github/dexe_github_b.svg">
-  <source media="(prefers-color-scheme: light)" srcset="/.github/dexe_github_w.svg">
-  <img alt="DeXe Protocol" src="/.github/dexe_github_w.svg">
-</picture>
-</div>
+DeXe is a decentralized autonomous organization (DAO) that provides tokenized asset management, social trading strategies, and community-governed investment products. Their smart contracts have been rigorously audited to ensure fund safety and protocol correctness.
 
-# DeXe Protocol
+Official website: dexe.io
 
-The DeXe Protocol is an open-source library of smart contracts for building and governing effective DAOs. It’s a comprehensive and flexible infrastructure that allows building custom DAOs for any specific need, from straightforward to complex organizational structures.
+This repository captures voluntary security research activities focused on key DeXe protocol contracts.
 
-## Protocol Deployments
+Research Scope & Objectives
 
-### Production (BNB Chain)
+Understand staking vaults, strategy execution, and DAO governance flows.
 
-| Name                | Address                                    |
-| :------------------ | :----------------------------------------- |
-| DeXe DAO            | 0xB562127efDC97B417B3116efF2C23A29857C0F0B |
-| DeXe DAO Token      | 0x6E88056E8376AE7709496BA64D37FA2F8015CE3E |
-| DeXe NFT Multiplier | 0x67fAC5aEE5b31e85dE5458676080326a1C034A85 |
-| ContractsRegistry   | 0x46B46629B674b4C0b48B111DEeB0eAfd9F84A1c0 |
-| UserRegistry        | 0x427a1214f12117b1AD48C817c203c5CF3Eb7E7C4 |
-| CoreProperties      | 0xaB9d2a2347D5fF5B760C0226C52d5C673b8D9e44 |
-| PriceFeed           | 0xc7730074736c10ed0d3F928A10Ee4162DA9a7983 |
-| ERC721Expert        | 0x892B3292cF80CB298b7fA20D04EF4732640db404 |
-| PoolFactory         | 0x85f86ef7E72e86BdEAb5F65e2B76A2c551f22109 |
-| PoolRegistry        | 0xFEB26AAB75638440B3CEFe8B10de6118972f9C6B |
-| SphereXEngine       | 0x41260f637a993ce714Ece1ee9875F489e483e9b3 |
-| PoolSphereXEngine   | 0x4fa2092E32934Dd3823E58C79ceD0e410a5B0D4b |
+Probe for reentrancy, access-control weaknesses, and integer overflows.
 
-### Stage (BNB Chain Testnet)
+Validate fee distribution logic and on-chain voting modules under edge-case scenarios.
 
-| Name                | Address                                    |
-| :------------------ | :----------------------------------------- |
-| DeXe DAO            | 0xB562127efDC97B417B3116efF2C23A29857C0F0B |
-| DeXe DAO Token      | 0xf42F27612af98F40865Dc3CB8531d3aa4C44A8E5 |
-| DeXe NFT Multiplier | 0x835d3B1781eC7411cf3c1C81956169c2c8B2497C |
-| ContractsRegistry   | 0x46B46629B674b4C0b48B111DEeB0eAfd9F84A1c0 |
-| UserRegistry        | 0x427a1214f12117b1AD48C817c203c5CF3Eb7E7C4 |
-| CoreProperties      | 0xaB9d2a2347D5fF5B760C0226C52d5C673b8D9e44 |
-| PriceFeed           | 0xc7730074736c10ed0d3F928A10Ee4162DA9a7983 |
-| ERC721Expert        | 0x892B3292cF80CB298b7fA20D04EF4732640db404 |
-| PoolFactory         | 0x85f86ef7E72e86BdEAb5F65e2B76A2c551f22109 |
-| PoolRegistry        | 0xFEB26AAB75638440B3CEFe8B10de6118972f9C6B |
-| SphereXEngine       | 0x41260f637a993ce714Ece1ee9875F489e483e9b3 |
-| PoolSphereXEngine   | 0x4fa2092E32934Dd3823E58C79ceD0e410a5B0D4b |
+Contracts under review:
 
-## Audits and Security
+StakingVault.sol
 
-DeXe Protocol smart contracts have been audited by several external auditors, and the full reports are available on [this repository](https://github.com/dexe-network/DeXe-Protocol/tree/master/audits) or via the links provided below.
+StrategyFactory.sol
 
-### DeXe Protocol smart contracts audit reports
+Governance.sol
 
-#### [Certik](https://github.com/dexe-network/DeXe-Protocol/blob/master/audits/certik-2023-05-04.pdf)
-#### [Cyfrin](https://github.com/dexe-network/DeXe-Protocol/blob/master/audits/cyfrin-2023-11-10.pdf)
-#### [Hacken](https://github.com/dexe-network/DeXe-Protocol/blob/master/audits/hacken-2023-05-22.pdf)
-#### [Ambisafe](https://github.com/dexe-network/DeXe-Protocol/blob/master/audits/ambisafe-2023-07-18.pdf)
-#### [Ambisafe #2](https://github.com/dexe-network/DeXe-Protocol/blob/master/audits/ambisafe-2023-11-10.pdf)
+Treasury.sol
+
+### Methodologies & Tools
+
+A hybrid approach combining static, dynamic, and manual techniques:
+
+Static Analysis
+
+Slither: Detects Solidity anti-patterns and potential misconfigurations
+
+Mythril: Symbolic analysis for common exploit classes
+
+Securify & SmartCheck: Cross-verification of static findings
+
+Dynamic & Fuzz Testing
+
+Echidna: Property-based fuzzing for invariants like stake accounting
+
+Manticore: Symbolic execution to explore complex governance logic
+
+Foundry (forge): Custom tests for edge-case interactions
+
+Manual Review & Penetration Techniques
+
+Code walkthroughs focusing on unchecked math, oracle dependencies, and DAO vote replay
+
+Transaction simulations via Hardhat to observe revert reasons and event logs
+
+Web3.py scripts for multi-participant and time-manipulation testing
+
+### Setup & Usage
+
+# Clone the repository
+git clone https://github.com/Franklin-Osede/Dexes-Protocol-Security.git
+cd Dexes-Protocol-Security
+
+# Install dependencies
+npm install --save-dev slither-analyzer mythx-cli securify smartcheck
+echo "export PATH=$PATH:$(npm bin)"
+npm install --save-dev echidna-core manticore forge hardhat
+npm install --save-dev solhint prettier prettier-plugin-solidity
+
+# Run static analysis
+npx slither contracts/
+
+# Run fuzz tests
+echidna-test contracts/ --config echidna-config.yaml
+
+# Symbolic execution
+manticore --output-dir reports/manticore contracts/StrategyFactory.sol
+
+### Documentation of Attempts
+
+All executions and manual tests are logged under /research-logs, including:
+
+Tool & Version
+
+Configuration
+
+Timestamp
+
+Key Observations (warnings, errors, anomalies)
+
+### Current Status
+
+No vulnerabilities have been discovered to date. Research is ongoing, and all new test logs will be added to /research-logs.
+
+### Collaboration
+
+Fellow researchers are encouraged to:
+
+Fork the repository and add new test cases or scripts.
+
+Open issues to suggest additional attack vectors or scenarios.
+
+Submit pull requests with enhanced tooling or sample exploit proofs.
+
+Disclaimer
+
+This is a voluntary security research effort and not an official audit. Use these methodologies at your own risk.
